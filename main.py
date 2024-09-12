@@ -1,7 +1,7 @@
 import json
 import chromadb
 from groq import Groq
-from flask import Flask, request, jsonify, render_template
+from flask import Flask, request, jsonify, render_template, redirect
 
 ### Vector DB functions
 client = chromadb.PersistentClient(path="./vectordb")
@@ -56,6 +56,12 @@ def chat_with_groq(user_message):
 
 ### Flask Server
 app = Flask(__name__)
+
+@app.before_request
+def before_request():
+    if request.url.startswith('https://'):
+        url = request.url.replace('https://', 'http://', 1)
+        return redirect(url, code=301)
 
 @app.route('/')
 def homepage():
