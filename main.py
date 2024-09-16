@@ -1,6 +1,8 @@
+import os
 import json
 import chromadb
 from groq import Groq
+from dotenv import load_dotenv
 from flask import Flask, request, jsonify, render_template, redirect
 
 ### Vector DB functions
@@ -28,6 +30,13 @@ def query_vectordb(user_message):
     return context
 
 ### LLM Inference with Groq
+load_dotenv()
+api_key = os.getenv('GROQ_API_KEY')
+if not api_key:
+    raise ValueError("GROQ_API_KEY not set in environment variables")
+
+client = Groq(api_key=api_key)
+
 client = Groq(
     api_key="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",
 )
