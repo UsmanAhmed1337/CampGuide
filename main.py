@@ -79,7 +79,7 @@ def before_request():
 def homepage():
     return render_template("index.html")
 
-@app.route('/chat', methods=['POST'])
+@app.route('/chat', methods=['POST', 'OPTIONS'])
 def chat():
     user_message = request.json.get('query')
     if not user_message:
