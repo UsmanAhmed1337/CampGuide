@@ -4,6 +4,8 @@ import chromadb
 from groq import Groq
 from dotenv import load_dotenv
 from flask import Flask, request, jsonify, render_template, redirect
+from flask_cors import CORS
+
 
 ### Vector DB functions
 client = chromadb.PersistentClient(path="./vectordb")
@@ -65,6 +67,7 @@ def chat_with_groq(user_message):
 
 ### Flask Server
 app = Flask(__name__)
+CORS(app)
 
 @app.before_request
 def before_request():
