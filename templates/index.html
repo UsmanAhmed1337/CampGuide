@@ -7,35 +7,10 @@
     <body>
         <h1>Welcome to CampGuide!</h1>
         <div id="chat-container">
-            <textarea id="user-input" placeholder="Type your message"></textarea>
-            <button onclick="sendMessage()">Send</button>
+            <textarea id="user-input" placeholder="Ask CampGuide anything!"></textarea>
+            <button onclick="sendMessage()">Ask</button>
             <div id="chat-output"></div>
         </div>
-        
-        <script>
-            function sendMessage() {
-                var userInput = document.getElementById('user-input').value;
-                fetch('http://13.239.32.71/chat', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({ query: userInput }),
-                })
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok');
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    document.getElementById('chat-output').innerHTML += '<p>' + data.response + '</p>';
-                    document.getElementById('user-input').value = ''; 
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                });
-            }
-        </script>
+        <script src="{{ url_for('static', filename='script.js') }}"></script>
     </body>
 </html>
