@@ -6,7 +6,7 @@ function sendMessage() {
         return;
     }
 
-    fetch('http://13.239.32.71/chat', {
+    fetch('http://3.25.58.26/chat', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
