@@ -9,7 +9,7 @@ from flask_cors import CORS
 
 ### Vector DB functions
 client = chromadb.PersistentClient(path="./vectordb")
-collection = client.get_collection(name="atomcamp")
+collection = client.get_or_create_collection(name="atomcamp")
 
 def load_data():
     f = open('scraped_data.json')
@@ -64,6 +64,7 @@ def chat_with_groq(user_message):
         model="llama3-8b-8192",
     )
     return chat_completion.choices[0].message.content
+
 
 ### Flask Server
 app = Flask(__name__)
