@@ -1,0 +1,7 @@
+.env
+.DS_Store
+__pycache__/
+*.pyc
+
+# Generated at ingestion time — rebuild with `python web_scrape.py` then load_data()
+vectordb/
